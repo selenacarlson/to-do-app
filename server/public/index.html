@@ -15,31 +15,33 @@
     <section class="jumbotron">
     <h1>To-Do List</h1>
     </section>
-    <h2>Add a task!</h2>
-    <div id="addTask">
-        <input id="taskIn" type="text" placeholder="Task">
-        <input id="descriptionIn" type="text" placeholder="Description">
-        <select id="categoryIn">
-            <option value="" disabled selected>Category</option>
-            <option value="home">Home</option>
-            <option value="work">Work</option>
-            <option value="school">School</option>
-        </select>
-        <button id="addButton">Add</button>
-    </div>
-    <br>
-    <table class ="table">
-        <thead>
-            <tr>
-                <th scope="row">Task</th>
-                <th scope="row">Description</th>
-                <th scope="row">Category</th>
-                <th scope="row"></th>
-                <th scope="row"></th>
-            </tr>
-        </thead>
-        <tbody class="list">
-        </tbody>
-    </table>
+    <section class="taskBody">
+        <div id="addTask">
+            <h2>Add a task!</h2>
+            <input id="taskIn" type="text" placeholder="Task">
+            <input id="descriptionIn" type="text" placeholder="Description">
+            <select id="categoryIn">
+                <option value="" disabled selected>Category</option>
+                <option value="Home">Home</option>
+                <option value="Work">Work</option>
+                <option value="School">School</option>
+            </select>
+            <button id="addButton">Add</button>
+        </div>
+        <br>
+        <table class ="table">
+            <thead>
+                <tr>
+                    <th scope="row">Task</th>
+                    <th scope="row">Description</th>
+                    <th scope="row">Category</th>
+                    <th scope="row"></th>
+                    <th scope="row"></th>
+                </tr>
+            </thead>
+            <tbody class="list">
+            </tbody>
+        </table>
+    </section>  
 </body>
 </html>

@@ -1,0 +1,9 @@
+.table {
+    border: solid;
+    border-color: gray;
+    border-width: 2px;
+  }
+
+.taskBody {
+    padding: 25px;
+}

@@ -4,9 +4,9 @@ const bodyParser = require('body-parser');
 const port = 5000;
 const taskRouter = require('./routes/task-router');
 
-app.use('/tasks', taskRouter);
-
 app.use(bodyParser.urlencoded({extended: true}));
+
+app.use('/tasks', taskRouter);
 
 app.use(express.static('server/public'));
 
