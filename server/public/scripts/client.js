@@ -31,15 +31,15 @@ $( document ).ready( function(){
     function displayTasks(chores){
         $('.list').empty();
         for( chore of chores ){
-            if (chore.complete = 'N'){
+            if (chore.complete == 'N'){
                 $('.list').append(`<tr><td>${chore.task}</td>
                         <td>${chore.description}</td>
                         <td>${chore.category}</td>
-                        <td><button class="doneButton" data-id=${chore.id}>Done</button></td>
+                        <td><button class="doneButton" data-id=${chore.id}>Complete</button></td>
                         <td><button class="deleteButton" data-id=${chore.id}>Delete</button></td>
                         </tr>`)
             }
-            else if (chore.complete = 'Y'){
+            else if (chore.complete == 'Y'){
                 $('.list').append(`<tr><td>${chore.task}</td>
                         <td>${chore.description}</td>
                         <td>${chore.category}</td>
@@ -91,8 +91,6 @@ $( document ).ready( function(){
                 console.log('Task not done', id);
             }
         }); // end ajax
-        // console.log('doneTask');
-        // $( this ).replaceWith('<div>&#10003</div>');
     } // end doneTask
 
     function confirmDelete(){

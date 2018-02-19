@@ -4,7 +4,7 @@ const router = express.Router();
 const pool = require('../modules/pool');
 
 router.get('/', function(request, response){
-    const sqlText = 'SELECT * FROM tasks';
+    const sqlText = 'SELECT * FROM tasks ORDER BY complete ASC';
     pool.query(sqlText)
         .then(function(result){
             console.log('Got result:', result)
