@@ -153,7 +153,5 @@ $( document ).ready( function(){
         }
         return result;
       } // end formatDate
-
-      console.log(new Date().toLocaleDateString());
     
 }); // end on ready
