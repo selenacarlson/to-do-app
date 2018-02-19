@@ -40,7 +40,7 @@ $( document ).ready( function(){
                             <td><button class="doneButton" data-id=${chore.id}>Complete</button></td>
                             <td><button class="deleteButton" data-id=${chore.id}>Delete</button></td>
                             </tr>`)
-                } // 
+                } 
                 else {
                     $('.list').append(`<tr><td>${chore.task}</td>
                             <td>${chore.description}</td>
@@ -50,7 +50,7 @@ $( document ).ready( function(){
                             <td><button class="deleteButton" data-id=${chore.id}>Delete</button></td>
                             </tr>`)
                 }
-            } // if not complete
+            } 
             else if (chore.complete == 'Y'){
                 if( new Date(chore.due) > new Date() ){
                     $('.list').append(`<tr><td>${chore.task}</td>
@@ -70,7 +70,7 @@ $( document ).ready( function(){
                             <td><button class="deleteButton" data-id=${chore.id}>Delete</button></td>
                             </tr>`)
                 }
-            } // end if complete
+            } // end if statement
         } // end for loop
     } // end displayTasks
 
