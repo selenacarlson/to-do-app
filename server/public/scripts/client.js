@@ -2,10 +2,10 @@ $( document ).ready( function(){
     
     getTasks();
 
-    $('.list').on('click', '.deleteButton', function(){
-        alert('Are you sure?');
-        let taskToDelete = $( this ).data('id');
-        deleteTask( taskToDelete );
+    $( '#addButton' ).on( 'click', function(){
+        let newTask = {};
+        createTask(newTask);
+        addTask(newTask);
     });
 
     $('.list').on('click', '.doneButton', function(){
@@ -13,34 +13,8 @@ $( document ).ready( function(){
         doneTask(completedTask);
     }); 
 
-    function deleteTask(id){
-        $.ajax({
-            type: 'DELETE',
-            url: `/tasks/delete/${id}`,
-            success: function( response ){
-                getTasks();
-            },
-            error: function(){
-                console.log('Task not deleted', id);
-            }
-        }); // end ajax
-    } // end deleteTask
+    $('.list').on('click', '.deleteButton', confirmDelete);
 
-    function doneTask(id){
-        $.ajax({
-            type: 'PUT',
-            url: `/tasks/done/${id}`,
-            success: function( response ){
-                getTasks();
-            },
-            error: function(){
-                console.log('Task not done', id);
-            }
-        }); // end ajax
-        // console.log('doneTask');
-        // $( this ).replaceWith('<div>&#10003</div>');
-    }
-    
     function getTasks(){
         $.ajax({
             type: 'GET',
@@ -76,19 +50,13 @@ $( document ).ready( function(){
         } // end for loop
     } // end displayTasks
 
-    $( '#addButton' ).on( 'click', function(){
-        let newTask = {};
-        createTask(newTask);
-        addTask(newTask);
-    });
-
     function createTask(newTask){
         newTask.task = $('#taskIn').val();
         newTask.description = $('#descriptionIn').val();
         newTask.category = $('#categoryIn').val();
         newTask.complete = 'N';
         return newTask;
-    };
+    }; // end createTask
 
     function addTask(newTask){
         $.ajax({
@@ -111,5 +79,45 @@ $( document ).ready( function(){
         $('#descriptionIn').val('');
         $('#categoryIn').val('');
     } // end clearInputs
+
+    function doneTask(id){
+        $.ajax({
+            type: 'PUT',
+            url: `/tasks/done/${id}`,
+            success: function( response ){
+                getTasks();
+            },
+            error: function(){
+                console.log('Task not done', id);
+            }
+        }); // end ajax
+        // console.log('doneTask');
+        // $( this ).replaceWith('<div>&#10003</div>');
+    } // end doneTask
+
+    function confirmDelete(){
+        let deleteThisTask = confirm('Are you sure you want to delete this task?');
+        let taskToDelete = $( this ).data('id');
+        deleteThisTask;
+        if (deleteThisTask == true){
+            deleteTask( taskToDelete );
+        }
+        else {
+            console.log('not deleted');
+        }
+    } // end confirmDelete
+
+    function deleteTask(id){
+        $.ajax({
+            type: 'DELETE',
+            url: `/tasks/delete/${id}`,
+            success: function( response ){
+                getTasks();
+            },
+            error: function(){
+                console.log('Task not deleted', id);
+            }
+        }); // end ajax
+    } // end deleteTask
 
 }); // end on ready

@@ -1,9 +1,29 @@
 .table {
     border: solid;
-    border-color: gray;
+    border-color: #707C84;
     border-width: 2px;
+    background-color: #F9CCB6;
   }
 
 .taskBody {
     padding: 25px;
+    background-color: #EAE0D5;
+}
+
+.jumbotron {
+    background-color: #F79D84;
+}
+
+body {
+    color: #22333B;
+}
+
+h1 {
+	font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+	font-size: 100px;
+	line-height: 65px;
+}
+
+h2 {
+    font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
 }
