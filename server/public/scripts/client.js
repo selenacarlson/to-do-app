@@ -52,24 +52,13 @@ $( document ).ready( function(){
                 }
             } 
             else if (chore.complete == 'Y'){
-                if( new Date(chore.due) > new Date() ){
-                    $('.list').append(`<tr><td>${chore.task}</td>
+                $('.list').append(`<tr><td>${chore.task}</td>
                             <td>${chore.description}</td>
                             <td>${chore.category}</td>
                             <td>${formatDate(chore.due)}</td>
                             <td>&#10003</td>
                             <td><button class="deleteButton" data-id=${chore.id}>Delete</button></td>
                             </tr>`)
-                }
-                else {
-                    $('.list').append(`<tr><td>${chore.task}</td>
-                            <td>${chore.description}</td>
-                            <td>${chore.category}</td>
-                            <td><mark>${formatDate(chore.due)}</mark>&#10071</td>
-                            <td>&#10003</td>
-                            <td><button class="deleteButton" data-id=${chore.id}>Delete</button></td>
-                            </tr>`)
-                }
             } // end if statement
         } // end for loop
     } // end displayTasks
