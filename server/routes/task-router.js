@@ -4,7 +4,7 @@ const router = express.Router();
 const pool = require('../modules/pool');
 
 router.get('/', function(request, response){
-    const sqlText = 'SELECT * FROM tasks ORDER BY complete ASC';
+    const sqlText = 'SELECT * FROM tasks ORDER BY complete ASC, due ASC';
     pool.query(sqlText)
         .then(function(result){
             console.log('Got result:', result)
@@ -19,9 +19,9 @@ router.get('/', function(request, response){
 router.post('/', function(request, response){
     const newTask = request.body;
     const sqlText = `INSERT INTO tasks 
-        (task, description, category, complete) 
-        VALUES ($1, $2, $3, $4)`;
-    pool.query(sqlText, [newTask.task, newTask.description, newTask.category, newTask.complete])
+        (task, description, category, due, complete) 
+        VALUES ($1, $2, $3, $4, $5)`;
+    pool.query(sqlText, [newTask.task, newTask.description, newTask.category, newTask.due, newTask.complete])
         .then(function(result){
             response.sendStatus(201);
         })

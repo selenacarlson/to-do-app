@@ -32,21 +32,45 @@ $( document ).ready( function(){
         $('.list').empty();
         for( chore of chores ){
             if (chore.complete == 'N'){
-                $('.list').append(`<tr><td>${chore.task}</td>
-                        <td>${chore.description}</td>
-                        <td>${chore.category}</td>
-                        <td><button class="doneButton" data-id=${chore.id}>Complete</button></td>
-                        <td><button class="deleteButton" data-id=${chore.id}>Delete</button></td>
-                        </tr>`)
-            }
+                if( new Date(chore.due) > new Date() ){
+                    $('.list').append(`<tr><td>${chore.task}</td>
+                            <td>${chore.description}</td>
+                            <td>${chore.category}</td>
+                            <td>${formatDate(chore.due)}</td>
+                            <td><button class="doneButton" data-id=${chore.id}>Complete</button></td>
+                            <td><button class="deleteButton" data-id=${chore.id}>Delete</button></td>
+                            </tr>`)
+                } // 
+                else {
+                    $('.list').append(`<tr><td>${chore.task}</td>
+                            <td>${chore.description}</td>
+                            <td>${chore.category}</td>
+                            <td><mark>${formatDate(chore.due)}</mark>&#10071</td>
+                            <td><button class="doneButton" data-id=${chore.id}>Complete</button></td>
+                            <td><button class="deleteButton" data-id=${chore.id}>Delete</button></td>
+                            </tr>`)
+                }
+            } // if not complete
             else if (chore.complete == 'Y'){
-                $('.list').append(`<tr><td>${chore.task}</td>
-                        <td>${chore.description}</td>
-                        <td>${chore.category}</td>
-                        <td>&#10003</td>
-                        <td><button class="deleteButton" data-id=${chore.id}>Delete</button></td>
-                        </tr>`)
-            } // end if
+                if( new Date(chore.due) > new Date() ){
+                    $('.list').append(`<tr><td>${chore.task}</td>
+                            <td>${chore.description}</td>
+                            <td>${chore.category}</td>
+                            <td>${formatDate(chore.due)}</td>
+                            <td>&#10003</td>
+                            <td><button class="deleteButton" data-id=${chore.id}>Delete</button></td>
+                            </tr>`)
+                }
+                else {
+                    $('.list').append(`<tr><td>${chore.task}</td>
+                            <td>${chore.description}</td>
+                            <td>${chore.category}</td>
+                            <td><mark>${formatDate(chore.due)}</mark>&#10071</td>
+                            <td>&#10003</td>
+                            <td><button class="deleteButton" data-id=${chore.id}>Delete</button></td>
+                            </tr>`)
+                }
+            } // end if complete
         } // end for loop
     } // end displayTasks
 
@@ -54,8 +78,10 @@ $( document ).ready( function(){
         newTask.task = $('#taskIn').val();
         newTask.description = $('#descriptionIn').val();
         newTask.category = $('#categoryIn').val();
+        newTask.due = $('#dateIn').val();
         newTask.complete = 'N';
         return newTask;
+        console.log(newTask);
     }; // end createTask
 
     function addTask(newTask){
@@ -78,6 +104,7 @@ $( document ).ready( function(){
         $('#taskIn').val('');
         $('#descriptionIn').val('');
         $('#categoryIn').val('');
+        $('#dateIn').val('');
     } // end clearInputs
 
     function doneTask(id){
@@ -118,4 +145,15 @@ $( document ).ready( function(){
         }); // end ajax
     } // end deleteTask
 
+    function formatDate(isoDateStr) {
+        let result = ''
+        if (isoDateStr != null) {
+          let date = new Date(isoDateStr);
+          result = date.toLocaleDateString();
+        }
+        return result;
+      } // end formatDate
+
+      console.log(new Date().toLocaleDateString());
+    
 }); // end on ready
